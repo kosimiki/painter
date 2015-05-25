@@ -302,7 +302,7 @@ public class MainViewController {
 	
 	/**
 	 * This method is responsible for calling the file saving method of the MainApp;
-	 * Alert windows will show if the operation was successful or not.
+	 * A window will show up if the operation failed or succeeded.
 	 */
 	@FXML
 	private void handleSaveToFile() {

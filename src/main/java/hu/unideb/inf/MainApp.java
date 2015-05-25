@@ -419,6 +419,8 @@ public class MainApp extends Application {
 		return Integer.toHexString(colorPicker.getValue().hashCode()).substring(0, 6).toUpperCase();
 		
 	}
+	
+
 	/**
 	 * This is the main method.
 	 * 
