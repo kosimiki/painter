@@ -6,6 +6,9 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import hu.unideb.inf.MainApp;
 import hu.unideb.inf.model.CustomColor;
 import hu.unideb.inf.model.Paint;
@@ -116,7 +119,8 @@ public class MainViewController {
 
 	private MainApp mainApp;
 	private boolean isCustomColor = false;
-
+	private static Logger	logger = LoggerFactory.getLogger(MainViewController.class);
+	
 	@FXML
 	private void initialize() {
 
@@ -147,32 +151,13 @@ public class MainViewController {
 				.getBrandProperty());
 		et_Name.setCellValueFactory(cellData -> cellData.getValue()
 				.getNameProperty());
-		/*
-		 * et_Color.setCellValueFactory(cellData -> cellData.getValue()
-		 * .getColorProperty());
-		 */
 
 		et_Price.setCellValueFactory(cellData -> cellData.getValue()
 				.getPriceProperty());
 		et_Size.setCellValueFactory(cellData -> cellData.getValue()
 				.getSizeProperty());
-		/*
-		 * et_Color.setCellFactory(cell -> { return new TableCell<Paint,
-		 * String>() {
-		 * 
-		 * @Override protected void updateItem(String item, boolean empty) { //
-		 * calling super here is very important - don't skip this!
-		 * super.updateItem(item, empty); if (item != null)
-		 * setStyle("-fx-background-color:#" + item); else{
-		 * 
-		 * setStyle("-fx-background-color:#FFFFFF");
-		 * 
-		 * 
-		 * } }
-		 * 
-		 * }; });
-		 */
-		//
+	
+		
 		saveToFileButton.setDisable(true);
 
 		brandTable.getSelectionModel().selectedItemProperty()
@@ -278,6 +263,7 @@ public class MainViewController {
 				mainApp.getPaintData().add(temp);
 			else {
 				Alert alert = new Alert(AlertType.WARNING);
+				logger.warn("Alrady in table!");
 				alert.initOwner(mainApp.getPrimaryStage());
 				alert.setHeaderText("Paint already in table!");
 				alert.setContentText("You can only store unique paints.");
@@ -292,7 +278,7 @@ public class MainViewController {
 	private void handleSaveToFile() {
 		saveToFileButton.setDisable(true);
 		if (mainApp.saveToFile(mainApp.getPaintData())) {
-
+			
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.initOwner(mainApp.getPrimaryStage());
 			alert.setHeaderText("Successful!");
@@ -300,11 +286,12 @@ public class MainViewController {
 					+ mainApp.getPath());
 			alert.showAndWait();
 		} else {
-			Alert alert = new Alert(AlertType.CONFIRMATION);
+			Alert alert = new Alert(AlertType.WARNING);
 			alert.initOwner(mainApp.getPrimaryStage());
 			alert.setHeaderText("Save Failed!");
 			alert.setContentText("The changes you made were failed saved to: "
 					+ mainApp.getPath());
+			logger.debug("failed to save to " + mainApp.getPath());
 			alert.showAndWait();
 		}
 
@@ -441,6 +428,7 @@ public class MainViewController {
 
 	public void updateSurfaceLabel() {
 		double surface = mainApp.calculateSurface();
+		logger.info("updateSurface label surface:" + surface);
 		if (surface < 0)
 			surfaceLabel.setText("Not enough suraface to paint");
 		else {
@@ -477,6 +465,7 @@ public class MainViewController {
 		File f;
 		if ((f = fc.showOpenDialog(mainApp.getPrimaryStage())) != null)
 			mainApp.setFile(f);
+		logger.debug(f.getPath());
 		setMainApp(mainApp);
 	}
 

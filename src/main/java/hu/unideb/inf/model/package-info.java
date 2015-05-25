@@ -1,3 +1,7 @@
+/**
+ * This package contains all the data related classes.
+ */
+
 @XmlJavaTypeAdapters({
 		@XmlJavaTypeAdapter(type = javafx.beans.property.DoubleProperty.class, value = hu.unideb.inf.model.DoublePropertyAdapter.class),
 		 @XmlJavaTypeAdapter(type = javafx.beans.property.StringProperty.class, value = hu.unideb.inf.model.StringPropertyAdapter.class),
