@@ -1,0 +1,42 @@
+
+.root{
+    -fx-font-size: 14.0pt;
+    -fx-font-family: "Tahoma";
+    -fx-base: #DFB951;
+    -fx-background: #A78732;
+    -fx-focus-color: #B6A678;
+}
+
+.button1{
+    -fx-text-fill:rgb(194,194,194);
+    -fx-background-color: rgb(42,42,42); 
+    -fx-border-radius: 4;
+    -fx-border-color:rgb(108,108,108);
+    -fx-background-radius:4;
+    -fx-padding: 5.0;
+}
+.button1:hover{
+	-fx-text-fill: rgb(230,230,230);
+	-fx-background-color: rgb(62,62,62);
+}
+.button1:pressed{
+	-fx-text-fill: rgb(230,230,230);
+	-fx-background-color:  rgb(62,62,62);
+}
+
+.bg{
+	-fx-background-color:rgb(61,61,61);
+}
+
+.bgTable{
+	-fx-background-color:rgb(81,81,81);
+}
+
+.labels{
+	-fx-text-fill: rgb(200,200,200);
+}
+
+.labels2{
+	-fx-text-fill: rgb(255,255,255);
+}
+                        
