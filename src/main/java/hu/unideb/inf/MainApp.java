@@ -191,8 +191,7 @@ public class MainApp extends Application {
 	public double calculateRequredLitres(double coverage){
 		return Math.ceil(calculateSurface() / coverage);
 	}
-	public double calculateCost() {
-		Paint paint = controller.selectedPaint();
+	public double calculateCost(Paint paint) {
 		if (calculateSurface() > 0) {
 			return paint.getPrice()
 					* calculateRequredLitres(paint.getSize());

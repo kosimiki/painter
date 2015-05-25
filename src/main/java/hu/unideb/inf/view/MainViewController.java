@@ -450,7 +450,7 @@ public class MainViewController {
 	}
 
 	private void updateCost() {
-		double cost = mainApp.calculateCost();
+		double cost = mainApp.calculateCost( selectedPaint());
 		double coverage = 0;
 		if(selectedPaint()!=null)
 			coverage = selectedPaint().getSize();

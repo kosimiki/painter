@@ -37,6 +37,12 @@ public class JAXBDAO implements IDAO{
 	
 	public JAXBDAO(File file){
 		this.file = file;
+		try {
+			readXMLFile();
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void readXMLFile() throws JAXBException {

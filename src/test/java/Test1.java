@@ -20,10 +20,21 @@ public class Test1 {
 	@Before
 	public void setUp() throws Exception {
 		mainApp = new MainApp();
-		mainApp.setFile(new File("data.xml"));
+		mainApp.setFile(new File( getClass().getResource("/data.xml").getFile()));
 	}
 
-
+	@Test
+	public void testStreamToString() {
+	   assertNotNull("Test file missing", 
+	               getClass().getResource("/data.xml"));
+	   
+	}
+	
+	@Test
+	public void testReadFile(){
+		assertTrue(new File( getClass().getResource("/data.xml").getFile())!= null);
+		assertTrue(mainApp.getPaintData().size()>0);
+	}
 	@Test
 	public void testEqual() {
 		Paint paint = new Paint();
@@ -86,6 +97,24 @@ public class Test1 {
 				if(i!=j)
 					assertFalse(list.get(i).getBrand().equals(list.get(j).getBrand()));
 		}
+	}
+	
+	@Test
+	public void testCost(){
+		//without surface
+		assertTrue(0 == mainApp.calculateCost(mainApp.getPaintData().get(0)));
+		Surface surface = new Surface("Wall", 4.1, 1.0, 2);
+		
+		mainApp.getAllSurfaceData().add(surface);
+		Paint p = new Paint();
+		p.setBrand("testBrand");
+		p.setColor("FFAA00");
+		p.setPrice(10.0);
+		p.setSize(10.0);
+		//1 litre = 10 > 4.1*2
+		assertTrue(10 == mainApp.calculateCost(p));
+		
+		
 	}
 
 }
