@@ -110,7 +110,7 @@ public class MainApp extends Application {
 	 */
 	public void setFile(File file) {
 		dao = new JAXBDAO(file);
-		if (!dao.isFileEmpty()) {
+		if (!dao.isEmpty()) {
 			paintData = FXCollections.observableArrayList(dao.getAllPaint());
 		} else {
 			paintData = FXCollections.observableArrayList();
@@ -123,7 +123,7 @@ public class MainApp extends Application {
 	public void setFile() {
 		if (dao == null) {
 			dao = new JAXBDAO();
-			if (!dao.isFileEmpty()) {
+			if (!dao.isEmpty()) {
 				paintData = FXCollections
 						.observableArrayList(dao.getAllPaint());
 			} else {
