@@ -145,5 +145,66 @@ public class Test1 {
 		
 		
 	}
+	
+	@Test
+	public void testCheapestOfThisColor(){
+		mainApp.getPaintData().clear();
+		Paint paint = new Paint();
+		paint.setBrand("Sniezka");
+		paint.setName("White");
+		paint.setColor("FFFFFF");
+		paint.setSize(5.0);
+		paint.setPrice(5.3);	
+		
+		Paint paint2 = new Paint();
+		paint2.setBrand("TestBrand");
+		paint2.setName("White");
+		paint2.setColor("FFFFFF");
+		paint2.setSize(10.0);
+		paint2.setPrice(5.3);	
+		
+		
+		mainApp.getPaintData().add(paint2);
+		mainApp.getPaintData().add(paint);
+		assertEquals(paint2,mainApp.cheapestOfThisColor(paint));
+		
+		
+		Paint paint3 = new Paint();
+		paint3.setBrand("Cheapest");
+		paint3.setName("White");
+		paint3.setColor("FFFFFF");
+		paint3.setSize(10.0);
+		paint3.setPrice(5.2);	
+		
+		
+		mainApp.getPaintData().add(paint3);
+		assertEquals(paint3,mainApp.cheapestOfThisColor(paint));
+		
+	}
+	@Test
+	public void calcRequredLitres(){
+		Surface surface = new Surface("TestWall", 12.3, 1.0, 2);
+		mainApp.getAllSurfaceData().clear();
+		mainApp.getNotToPaintSurfaceData().clear();
+		mainApp.getAllSurfaceData().add(surface);
+		assertEquals(5, mainApp.calculateRequredLitres(5), 0.000001);
+		
+		surface = new Surface("TestWall", 1.1, 2.0, 1);
+		mainApp.getAllSurfaceData().clear();
+		mainApp.getNotToPaintSurfaceData().clear();
+		mainApp.getAllSurfaceData().add(surface);
+		assertEquals(1, mainApp.calculateRequredLitres(5), 0.000001);
+		
+	}
+	
+	@Test
+	public void testReqiredNumber(){
+		
+		assertEquals("1 of 1l ", mainApp.calcRequiredNumberOfPaints(10, 10));
+		assertEquals("10 of 10l ", mainApp.calcRequiredNumberOfPaints(100, 1));
+		assertEquals("1 of 10l 1 of 5l 1 of 2l ",
+				mainApp.calcRequiredNumberOfPaints(17, 1));
+		
+	}
 
 }

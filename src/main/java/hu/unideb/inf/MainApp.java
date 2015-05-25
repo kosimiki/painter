@@ -34,18 +34,6 @@ public class MainApp extends Application {
 	private ObservableList<Surface> notToPaintSurfaceData;
 	private MainViewController controller;
 
-	public void setPaintData(ObservableList<Paint> paintData) {
-		this.paintData = paintData;
-	}
-
-	public void setAllSurfaceData(ObservableList<Surface> allSurfaceData) {
-		this.allSurfaceData = allSurfaceData;
-	}
-
-	public void setNotToPaintSurfaceData(
-			ObservableList<Surface> notToPaintSurfaceData) {
-		this.notToPaintSurfaceData = notToPaintSurfaceData;
-	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -208,18 +196,17 @@ public class MainApp extends Application {
 		NumberFormat formatter = new DecimalFormat("#0");
 		double temp6 = surface % 10;
 		double temp = (surface - temp6) / 10;
-
-		if (temp6 == 1)
-			result.append(formatter.format(temp + 1)).append(" of 10l ");
-		else if (!(temp < 1) && temp > 1)
+		
+		
+			if(temp>0)
 			result.append(formatter.format(temp)).append(" of 10l ");
-		else {
-			if (temp6 >= 5) {
+		
+			if(temp6>=5){
 				result.append("1 of 5l ");
-				temp6 %= 5;
+				temp6 = temp6%5;
 			}
+			
 			switch ((int) temp6) {
-			case 0:
 			case 1:
 				result.append("1 of 1l ");
 				break;
@@ -234,7 +221,7 @@ public class MainApp extends Application {
 				break;
 			}
 
-		}
+		
 		return result.toString();
 	}
 
@@ -246,6 +233,7 @@ public class MainApp extends Application {
 		}
 		for (Surface s : notToPaintSurfaceData) {
 			sumSurfacesNTP += s.getSurface() * s.getNumberOfItems();	
+
 		}
 		return sumSurfaces - sumSurfacesNTP;
 
