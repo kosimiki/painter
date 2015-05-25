@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 /**
  * This class is the main controller which holds together the models and the view.
  * It extedns the Application class which is the entry point for JavaFX applications.
- * 
+ * @author Miklós Kosárkár
  */
 
 public class MainApp extends Application {

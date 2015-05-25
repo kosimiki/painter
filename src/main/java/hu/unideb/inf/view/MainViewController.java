@@ -28,32 +28,40 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 
-public class MainViewController {
 
+/**
+ * This is the controller of the main view. This class manages
+ * the communication between the view described by the .fxml file and the
+ * mainApp controller.
+ * @author Miklós Kosárkár
+ *
+ */
+public class MainViewController {
+	/**
+	 *  Color picker object for color inputs.
+	 */
 	@FXML
 	private ColorPicker customColorPicker;
+	/**
+	 *  Button object is required for the controller only to be able to set it disabled.
+	 */
 	@FXML
 	private Button saveToFileButton;
+	
 	@FXML
 	private TableColumn<Paint, String> brandCol;
-
 	@FXML
 	private Rectangle coloredRec;
 	@FXML
 	private Rectangle coloredRectangle;
-
 	@FXML
 	private TableColumn<Surface, Number> widthCol;
-
 	@FXML
 	private TableColumn<Surface, String> nameColNotToPaint;
-
 	@FXML
 	private TableView<Paint> brandTable;
-
 	@FXML
 	private TableView<Paint> editionTable;
-
 	@FXML
 	private TableColumn<Paint, String> et_Brand;
 	@FXML
@@ -72,55 +80,54 @@ public class MainViewController {
 	private TableColumn<Paint, String> colorCol;
 	@FXML
 	private TableColumn<Surface, Number> heightCol;
-
 	@FXML
 	private TableColumn<Surface, Number> widthColNotToPaint;
-
 	@FXML
 	private TableView<Surface> allSurfacesTable;
-
 	@FXML
 	private TableView<Surface> surfacesNotToPaintTable;
-
 	@FXML
 	private Label colorLable;
-
 	@FXML
 	private Label requiredPaintsLabel;
 	@FXML
 	private Label cheapestLabel;
-
 	@FXML
 	private TableColumn<Surface, Number> heightColNotToPaint;
-
 	@FXML
 	private Tab custonColorTab;
-
 	@FXML
 	private Tab databaseTab;
-
 	@FXML
 	private Label costLabel;
-
 	@FXML
 	private TableColumn<Surface, Number> nOfItemsColNotToPaint;
-
 	@FXML
 	private Label surfaceLabel;
-
 	@FXML
 	private Label brandLabel;
-
 	@FXML
 	private Tab presetColorTab;
-
 	@FXML
 	private TableColumn<Surface, Number> numberOfItemsCol;
-
+	
+	/**
+	 * This objects holds the main application. 
+	 * Through this lists and methods can be accessed.
+	 */
 	private MainApp mainApp;
+	/**
+	 * This boolean field is required to trace if the custom color is used or not.
+	 */
 	private boolean isCustomColor = false;
+	/**
+	 * Logger object for logging.
+	 */
 	private static Logger	logger = LoggerFactory.getLogger(MainViewController.class);
 	
+	/**
+	 * This method sets some listeners and values for table cells.
+	 */
 	@FXML
 	private void initialize() {
 
@@ -194,14 +201,22 @@ public class MainViewController {
 				});
 
 	}
-
+	
+	/**
+	 * This method returns true if a color is selected from the color table.
+	 * @return true if a color is selected from the color table.
+	 */
 	private boolean isColorSelected() {
 		if (!colorLable.getText().isEmpty())
 			return true;
 		else
 			return false;
 	}
-
+	/**
+	 * This methods updates the color table. It is called when any change happen in the Paint list
+	 * or another Brand is selected.
+	 * @param paint
+	 */
 	private void updateColorTable(Paint paint) {
 		if (paint == null) {
 			colorTable.setItems(null);
@@ -214,7 +229,11 @@ public class MainViewController {
 			colorTable.setItems(FXCollections.observableArrayList(list));
 		}
 	}
-
+	/**
+	 * This method sets the main application from the controller and 
+	 * also sets the tables to their initial state.
+	 * @param mainApp the {@code MainApp} object
+	 */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		mainApp.setFile();
@@ -237,7 +256,10 @@ public class MainViewController {
 		editionTable.setItems(mainApp.getPaintData());
 
 	}
-
+	
+	/**
+	 * This method is responsible for handling new {@code Surface}s from the GUI. 
+	 */
 	@FXML
 	private void handleNewSurface() {
 		Surface temp = new Surface();
@@ -253,7 +275,11 @@ public class MainViewController {
 
 		}
 	}
-
+	
+	/**
+	 * This method is responsible for handling new {@code Paint}s from the GUI.
+	 * Only unique paints are accepted.
+	 */
 	@FXML
 	private void handleNewPaint() {
 		Paint temp = new Paint();
@@ -273,7 +299,11 @@ public class MainViewController {
 			updateBrandTable();
 		}
 	}
-
+	
+	/**
+	 * This method is responsible for calling the file saving method of the MainApp;
+	 * Alert windows will show if the operation was successful or not.
+	 */
 	@FXML
 	private void handleSaveToFile() {
 		saveToFileButton.setDisable(true);
@@ -296,7 +326,9 @@ public class MainViewController {
 		}
 
 	}
-
+	/**
+	 * This method is responsible for handling new {@code Surface}s from the GUI. 
+	 */
 	@FXML
 	private void handleNewSurfaceNTP() {
 		Surface temp = new Surface();
@@ -311,7 +343,9 @@ public class MainViewController {
 		}
 
 	}
-
+	/**
+	 * This method is responsible for handling the edition of a {@code Surface}
+	 */
 	@FXML
 	private void handleEdit() {
 		Surface selected = allSurfacesTable.getSelectionModel()
@@ -347,7 +381,9 @@ public class MainViewController {
 			}
 		}
 	}
-
+	/**
+	 * This method is responsible for handling the edition of a {@code Paint}
+	 */
 	@FXML
 	private void handleEditPaint() {
 		Paint paint = editionTable.getSelectionModel().getSelectedItem();
@@ -368,7 +404,11 @@ public class MainViewController {
 			alert.showAndWait();
 		}
 	}
-
+	/**
+	 * This method is responsible for handling the removal of a  {@code Surface}.
+	 * Warnings are ready to inform the user if they failed to select a surface before
+	 * trying to remove one.
+	 */
 	@FXML
 	public void handleRemove() {
 		Surface selected = allSurfacesTable.getSelectionModel()
@@ -403,6 +443,11 @@ public class MainViewController {
 		}
 
 	}
+	/**
+	 * This method is responsible for handling the removal of a  {@code Paint}.
+	 * Warnings are ready to inform the user if they failed to select a paint before
+	 * trying to remove one.
+	 */
 
 	@FXML
 	public void handleRemovePaint() {
@@ -421,11 +466,17 @@ public class MainViewController {
 			alert.showAndWait();
 		}
 	}
-
+	/**
+	 * This method returns the selected paint from the color table.
+	 * @return selected paint from the color table.
+	 */
 	public Paint selectedPaint() {
 		return colorTable.getSelectionModel().getSelectedItem();
 	}
-
+	/**
+	 * This method updates the surfaces label.
+	 * Called by various listeners in order to ensure the GUI is up-to-date.
+	 */
 	public void updateSurfaceLabel() {
 		double surface = mainApp.calculateSurface();
 		logger.info("updateSurface label surface:" + surface);
@@ -436,7 +487,10 @@ public class MainViewController {
 			surfaceLabel.setText(formatter.format(surface));
 		}
 	}
-
+	/**
+	 * This method updates the cost label.
+	 * Called by various listeners in order to ensure the GUI is up-to-date.
+	 */
 	private void updateCost() {
 		double cost = mainApp.calculateCost( selectedPaint());
 		double coverage = 0;
@@ -457,7 +511,9 @@ public class MainViewController {
 		}
 
 	}
-
+	/**
+	 * This method handles the file chose input.
+	 */
 	@FXML
 	public void fileChooser() {
 		FileChooser fc = new FileChooser();
@@ -468,12 +524,17 @@ public class MainViewController {
 		logger.debug(f.getPath());
 		setMainApp(mainApp);
 	}
-
+	/**
+	 * This method updates the brand table.
+	 */
 	public void updateBrandTable() {
 		brandTable.setItems(FXCollections.observableArrayList(mainApp
 				.getUniqueBrands()));
 	}
-
+	/**
+	 * This method updates the color cost label if a custom color is selected.
+	 * 
+	 */
 	@FXML
 	public void customColorCost() {
 		isCustomColor = true;
@@ -491,7 +552,12 @@ public class MainViewController {
 		
 
 	}
-
+	/**
+	 * This method converts the color of a {@code ColorPicker} into a hex{@code String} ("FFFFFF").
+	 * 
+	 * @param colorPicker the {@code ColorPicker} object
+	 * @return {@code String} that represents the hexadecimal version of an rgb color.
+	 */
 	private String getHexCode(ColorPicker colorPicker){
 		if(Integer.toHexString(colorPicker.getValue().hashCode()).length()<6)
 			return "000000";
