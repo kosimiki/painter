@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Paints>
+    <paint>
+        <brand>Sniezka</brand>
+        <name>Brown</name>
+        <color>993300</color>
+        <price>13.4</price>
+        <size>8.0</size>
+    </paint>
+    <paint>
+        <brand>Zebra</brand>
+        <name>Brown</name>
+        <color>993300</color>
+        <price>13.5</price>
+        <size>9.4</size>
+    </paint>
+    <paint>
+        <brand>Sniezka</brand>
+        <name>Dark Green</name>
+        <color>3300FF</color>
+        <price>19.0</price>
+        <size>7.8</size>
+    </paint>
+    <paint>
+        <brand>Sniezka</brand>
+        <name>Ocean Blue</name>
+        <color>B3E6E6</color>
+        <price>9.0</price>
+        <size>8.0</size>
+    </paint>
+    <paint>
+        <brand>Sniezka</brand>
+        <name>Blue</name>
+        <color>334DB3</color>
+        <price>15.0</price>
+        <size>8.0</size>
+    </paint>
+    <paint>
+        <brand>Zebra</brand>
+        <name>Blue</name>
+        <color>334DB3</color>
+        <price>12.0</price>
+        <size>7.0</size>
+    </paint>
+    <paint>
+        <brand>Tesco</brand>
+        <name>Blue</name>
+        <color>334DB3</color>
+        <price>10.0</price>
+        <size>7.0</size>
+    </paint>
+    <paint>
+        <brand>Sniezka</brand>
+        <name>Green</name>
+        <color>80B380</color>
+        <price>16.0</price>
+        <size>9.0</size>
+    </paint>
+    <paint>
+        <brand>Sniezka</brand>
+        <name>Orange</name>
+        <color>CC6633</color>
+        <price>12.1</price>
+        <size>8.0</size>
+    </paint>
+</Paints>

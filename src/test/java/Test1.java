@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +20,7 @@ public class Test1 {
 	@Before
 	public void setUp() throws Exception {
 		mainApp = new MainApp();
-		
-	
-		
+		mainApp.setFile(new File("data.xml"));
 	}
 
 
@@ -77,6 +76,16 @@ public class Test1 {
 		paint2.setSize(5.0);
 		paint2.setPrice(5.3);
 		assertFalse(paint.hashCode() == paint2.hashCode());
+	}
+	
+	@Test
+	public void testUniqueBrands(){
+		List<Paint> list = mainApp.getUniqueBrands();
+		for(int i =0; i<list.size(); i++){
+			for(int j = 0; j<list.size(); j++)
+				if(i!=j)
+					assertFalse(list.get(i).getBrand().equals(list.get(j).getBrand()));
+		}
 	}
 
 }
