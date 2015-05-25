@@ -7,6 +7,7 @@ import hu.unideb.inf.model.Surface;
 import hu.unideb.inf.view.MainViewController;
 import hu.unideb.inf.view.PaintEdit;
 import hu.unideb.inf.view.SurfaceEdit;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -14,11 +15,13 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -234,6 +237,7 @@ public class MainApp extends Application {
 			PaintEdit controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setPaint(paint);
+			controller.setMainApp(this);
 			dialogStage.showAndWait();
 			return controller.isOkClicked();
 		} catch (IOException e) {
@@ -401,6 +405,22 @@ public class MainApp extends Application {
 	 */
 	public ObservableList<Surface> getNotToPaintSurfaceData() {
 		return notToPaintSurfaceData;
+	}
+	
+	
+	/**
+	 * This method converts the color of a {@code ColorPicker} into a hex{@code String} ("FFFFFF").
+	 * 
+	 * @param colorPicker the {@code ColorPicker} object
+	 * @return {@code String} that represents the hexadecimal version of an rgb color.
+	 */
+	public String getHexCode(ColorPicker colorPicker){
+		if(Integer.toHexString(colorPicker.getValue().hashCode()).length()<6)
+			return "000000";
+		else
+			
+		return Integer.toHexString(colorPicker.getValue().hashCode()).substring(0, 6).toUpperCase();
+		
 	}
 	/**
 	 * This is the main method.

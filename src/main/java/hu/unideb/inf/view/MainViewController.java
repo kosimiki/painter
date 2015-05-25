@@ -538,7 +538,7 @@ public class MainViewController {
 	@FXML
 	public void customColorCost() {
 		isCustomColor = true;
-		CustomColor color = new CustomColor(getHexCode(customColorPicker));
+		CustomColor color = new CustomColor(mainApp.getHexCode(customColorPicker));
 		NumberFormat formatter = new DecimalFormat("#0.00");
 		brandLabel.setText("Custom");
 		colorLable.setText("");
@@ -552,18 +552,5 @@ public class MainViewController {
 		
 
 	}
-	/**
-	 * This method converts the color of a {@code ColorPicker} into a hex{@code String} ("FFFFFF").
-	 * 
-	 * @param colorPicker the {@code ColorPicker} object
-	 * @return {@code String} that represents the hexadecimal version of an rgb color.
-	 */
-	private String getHexCode(ColorPicker colorPicker){
-		if(Integer.toHexString(colorPicker.getValue().hashCode()).length()<6)
-			return "000000";
-		else
-			
-		return Integer.toHexString(colorPicker.getValue().hashCode()).substring(0, 6).toUpperCase();
-		
-	}
+
 }

@@ -1,5 +1,6 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.MainApp;
 import hu.unideb.inf.model.Paint;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -7,7 +8,12 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-
+/**
+ * This class is the controller of the editor window.
+ * This controller handles inputs and outputs ensures that the input is correct.
+ * @author Milós Kosárkár
+ *
+ */
 public class PaintEdit {
 
 	@FXML
@@ -29,15 +35,26 @@ public class PaintEdit {
 	private void initialize() {
 		
 	}
-
+	
 	private Stage dialogStage;
 	private boolean okClicked = false;
+	private MainApp mainApp;
+	/**
+	 * This object holds the Paint to be edited.
+	 */
 	private Paint paint;
 
+	/**
+	 * This method sets the stage.
+	 * @param stage the container which holds the gui elements
+	 */
 	public void setDialogStage(Stage stage) {
 		this.dialogStage = stage;
 	}
 	
+	/**
+	 * This method clears the field is is focused.
+	 */
 	public void resetValue(){
 		if(brandField.focusedProperty().getValue()){
 			brandField.clear();
@@ -53,7 +70,10 @@ public class PaintEdit {
 		}
 		
 	}
-	
+	/**
+	 * This method sets the values for the paint labels.
+	 * @param paint object to be edited
+	 */
 	public void setPaint(Paint paint){
 		this.paint = paint;
 		brandField.setText(paint.getBrand());
@@ -61,16 +81,23 @@ public class PaintEdit {
 		priceField.setText("" + paint.getPrice());
 		sizeField.setText(""+ paint.getSize());
 	}
-	
+	/**
+	 * This method returs the boolean value of the field {@code okClicked}
+	 * @return the boolean value of the field {@code okClicked}
+	 */
 	public boolean isOkClicked(){
 		return okClicked;
 	}
-
+	/**
+	 * This method is called when the OK button is pressed checks if the input is 
+	 * valid and if it is then sets the paint object accordign to the input.
+	 * At the end the window is closed.
+	 */
 	public void handleOkClicked() {
 		if(isInputValid()){
 			paint.setBrand( brandField.getText());
 			paint.setName(nameField.getText());
-			paint.setColor(getHexCode(colorPicker));
+			paint.setColor(mainApp.getHexCode(colorPicker));
 			paint.setPrice(Double.parseDouble(priceField.getText()));
 			paint.setSize(Double.parseDouble(sizeField.getText()));
 			okClicked = true;
@@ -78,10 +105,17 @@ public class PaintEdit {
 		}
 		
 	}
+	/**
+	 * This method is called when the CANCEL button is clicked.
+	 * It closes the window.
+	 */
 	public void handleCancel(){
 		dialogStage.close();
 	}
-
+	/**
+	 * This method checks if the input is valid.
+	 * @return true if the input is valid, if not a warning is showed to the user then returns with false
+	 */
 	public boolean isInputValid() {
 		String errorMsg = "";
 		double price = 0;
@@ -125,12 +159,15 @@ public class PaintEdit {
 		}
 		
 	}
-	private String getHexCode(ColorPicker colorPicker){
-		if(Integer.toHexString(colorPicker.getValue().hashCode()).length()<6)
-			return "000000";
-		else
-			
-		return Integer.toHexString(colorPicker.getValue().hashCode()).substring(0, 6).toUpperCase();
+
+	/**
+	 * This method sets the {@code MainApp}.
+	 * @param mainApp
+	 */
+	public void setMainApp(MainApp mainApp) {
+		this.mainApp = mainApp;
 		
 	}
+	
+
 }
