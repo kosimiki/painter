@@ -2,9 +2,13 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import hu.unideb.inf.MainApp;
 import hu.unideb.inf.model.Paint;
@@ -29,7 +33,32 @@ public class Test1 {
 	               getClass().getResource("/data.xml"));
 	   
 	}
+	@Test
+	public void testCalcSurface(){
+		
+		Surface surface = new Surface("Wall", 4.0, 1.0, 2);
+		
+		mainApp.getNotToPaintSurfaceData().clear();
+		mainApp.getNotToPaintSurfaceData().add(surface);
+		mainApp.getAllSurfaceData().clear();
+		mainApp.getAllSurfaceData().add(surface);
+		assertTrue(mainApp.calculateSurface() == 0.0);
+		
+		Surface surface2 = new Surface("Wall", 2.0, 1.0, 2);
+		
+
+		mainApp.getNotToPaintSurfaceData().clear();
+		mainApp.getNotToPaintSurfaceData().add(surface2);
+		assertTrue(mainApp.calculateSurface() == 4);
+		
+		
+		mainApp.getNotToPaintSurfaceData().clear();
+		mainApp.getNotToPaintSurfaceData().add(surface);
+		mainApp.getAllSurfaceData().clear();
+		mainApp.getAllSurfaceData().add(surface2);
+		assertTrue(mainApp.calculateSurface() == -4);
 	
+	}
 	@Test
 	public void testReadFile(){
 		assertTrue(new File( getClass().getResource("/data.xml").getFile())!= null);

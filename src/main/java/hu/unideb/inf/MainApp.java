@@ -245,7 +245,7 @@ public class MainApp extends Application {
 			sumSurfaces += s.getSurface() * s.getNumberOfItems();
 		}
 		for (Surface s : notToPaintSurfaceData) {
-			sumSurfacesNTP += s.getSurface() * s.getNumberOfItems();
+			sumSurfacesNTP += s.getSurface() * s.getNumberOfItems();	
 		}
 		return sumSurfaces - sumSurfacesNTP;
 
