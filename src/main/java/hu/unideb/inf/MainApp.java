@@ -80,8 +80,7 @@ public class MainApp extends Application {
 	 * The main entry point of the application. 
 	 * This will set the primary {@code Stage},
 	 * initialize the {@code rootLayout} and show the main view.
-	 * @param {@code Stage} primaryStage
-	 * @return {@code void}
+	 * @param primaryStage of the application
 	 */
 
 	@Override
@@ -95,9 +94,7 @@ public class MainApp extends Application {
 	
 	/**
 	 * This constructor ensures that all lists are initialized.
-	 * At this point {@code paintData != null} but {@codeisEmpty() == true},
-	 * {@code allSurfaceData != null} but {@codeisEmpty() == true},
-	 * {@code notToPaintSurfaceData != null} but {@codeisEmpty() == true}.
+	 *
 	 */
 	public MainApp() {
 
@@ -220,7 +217,7 @@ public class MainApp extends Application {
 
 	/**
 	 * This method loads a dialogue window to edit a {@code Paint} object.
-	 * @param surface to be edited
+	 * @param paint to be edited
 	 * @return true of OK button was clicked false if the CANCEL button was clicked
 	 */
 	public boolean showPaintEditDialog(Paint paint) {

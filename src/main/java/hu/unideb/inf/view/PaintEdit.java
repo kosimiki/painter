@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 /**
- * This class is the controller of the editor window.
+ * This class is the controller of the painter editor window.
  * This controller handles inputs and outputs ensures that the input is correct.
  * @author Milós Kosárkár
  *
@@ -35,9 +35,17 @@ public class PaintEdit {
 	private void initialize() {
 		
 	}
-	
+	/**
+	 * Container of this window.
+	 */
 	private Stage dialogStage;
+	/**
+	 * This field tracks if OK button is clicked.
+	 */
 	private boolean okClicked = false;
+	/**
+	 * Object for the mainApplication.
+	 */
 	private MainApp mainApp;
 	/**
 	 * This object holds the Paint to be edited.
@@ -82,7 +90,7 @@ public class PaintEdit {
 		sizeField.setText(""+ paint.getSize());
 	}
 	/**
-	 * This method returs the boolean value of the field {@code okClicked}
+	 * This method returs the boolean value of the field {@code okClicked}.
 	 * @return the boolean value of the field {@code okClicked}
 	 */
 	public boolean isOkClicked(){
@@ -162,7 +170,7 @@ public class PaintEdit {
 
 	/**
 	 * This method sets the {@code MainApp}.
-	 * @param mainApp
+	 * @param mainApp main controller
 	 */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;

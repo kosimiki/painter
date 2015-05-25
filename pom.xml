@@ -28,7 +28,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -128,7 +128,26 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>[1.8,)</version>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<id>enforce-versions</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>3</version>
+								</requireMavenVersion>
+								<requireJavaVersion>
+									<version>1.8</version>
+								</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -162,11 +181,11 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	
+
 	<scm>
-	
-	<connection>scm:git:http://github.com/osimiki/painter</connection>
-	<url>https://github.com/kosimiki/painter.git</url>
+
+		<connection>scm:git:http://github.com/osimiki/painter</connection>
+		<url>https://github.com/kosimiki/painter.git</url>
 
 	</scm>
 </project>

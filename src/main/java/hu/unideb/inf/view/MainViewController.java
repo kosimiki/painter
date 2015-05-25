@@ -215,7 +215,7 @@ public class MainViewController {
 	/**
 	 * This methods updates the color table. It is called when any change happen in the Paint list
 	 * or another Brand is selected.
-	 * @param paint
+	 * @param paint which is selected in the brand table
 	 */
 	private void updateColorTable(Paint paint) {
 		if (paint == null) {

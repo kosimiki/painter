@@ -6,7 +6,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-
+/**
+ * This class is the controller of the surface editor window.
+ * This controller handles inputs and outputs ensures that the input is correct.
+ * @author Milós Kosárkár
+ *
+ */
 public class SurfaceEdit {
 
 	@FXML
@@ -21,19 +26,38 @@ public class SurfaceEdit {
 	@FXML
 	private TextField numberOfItemsField;
 
+	/**
+	 * Empty initialize method().
+	 */
 	@FXML
 	private void initialize() {
 		
 	}
-
+	/**
+	 * Container of this window.
+	 */
 	private Stage dialogStage;
+	/**
+	 * This field tracks if OK button is clicked.
+	 */
 	private boolean okClicked = false;
+	/**
+	 * Surface object to be edited.
+	 */
 	private Surface surface;
-
+	
+	
+	/**
+	 * This method sets the stage.
+	 * @param stage the container which holds the gui elements
+	 */
 	public void setDialogStage(Stage stage) {
 		this.dialogStage = stage;
 	}
 	
+	/**
+	 * This method clears the field is is focused.
+	 */
 	public void resetValue(){
 		if(heightField.focusedProperty().getValue()){
 			heightField.clear();
@@ -51,7 +75,10 @@ public class SurfaceEdit {
 		
 	}
 	
-
+	/**
+	 * This method sets the values for the surface labels.
+	 * @param surface object to be edited
+	 */
 	public void setSurface(Surface surface) {
 		this.surface = surface;
 		nameField.setText(this.surface.getName());
@@ -59,10 +86,20 @@ public class SurfaceEdit {
 		widthField.setText(this.surface.getWidth() + "");
 		numberOfItemsField.setText(this.surface.getNumberOfItems() + "");
 	}
+	
+	/**
+	 * This method returs the boolean value of the field {@code okClicked}.
+	 * @return the boolean value of the field {@code okClicked}
+	 */
 	public boolean isOkClicked(){
 		return okClicked;
 	}
-
+	
+	/**
+	 * This method is called when the OK button is pressed checks if the input is 
+	 * valid and if it is then sets the surface object accordign to the input.
+	 * At the end the window is closed.
+	 */
 	public void handleOkClicked() {
 		if(isInputValid()){
 			surface.setName(nameField.getText());
@@ -74,10 +111,18 @@ public class SurfaceEdit {
 		}
 		
 	}
+	/**
+	 * This method is called when the CANCEL button is clicked.
+	 * It closes the window.
+	 */
 	public void handleCancel(){
 		dialogStage.close();
 	}
-
+	
+	/**
+	 * This method checks if the input is valid.
+	 * @return true if the input is valid, if not a warning is showed to the user then returns with false
+	 */
 	public boolean isInputValid() {
 		String errorMsg = "";
 		double height = 0;
