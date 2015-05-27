@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -24,7 +25,8 @@ public class Test1 {
 	@Before
 	public void setUp() throws Exception {
 		mainApp = new MainApp();
-		mainApp.setFile(new File( getClass().getResource("/data.xml").getFile()));
+		System.out.println(getClass().getResource("/data.xml").toURI());
+		mainApp.setFile(new File( getClass().getResource("/data.xml").toURI()));
 	}
 
 	@Test
@@ -60,8 +62,8 @@ public class Test1 {
 	
 	}
 	@Test
-	public void testReadFile(){
-		assertTrue(new File( getClass().getResource("/data.xml").getFile())!= null);
+	public void testReadFile() throws URISyntaxException{
+		assertTrue(new File( getClass().getResource("/data.xml").toURI())!= null);
 		assertTrue(mainApp.getPaintData().size()>0);
 	}
 	@Test
