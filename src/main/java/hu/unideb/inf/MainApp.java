@@ -149,7 +149,7 @@ public class MainApp extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class
-					.getResource("view/rootLayout.fxml"));
+					.getResource("/rootLayout.fxml"));
 			rootLayout = (BorderPane) loader.load();
 
 			Scene scene = new Scene(rootLayout);
@@ -169,7 +169,7 @@ public class MainApp extends Application {
 	public void showMainView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/mainView.fxml"));
+			loader.setLocation(MainApp.class.getResource("/mainView.fxml"));
 			AnchorPane mainView = (AnchorPane) loader.load();
 			controller = loader.getController();
 			controller.setMainApp(this);
@@ -196,7 +196,7 @@ public class MainApp extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class
-					.getResource("view/SurfaceEdit.fxml"));
+					.getResource("/SurfaceEdit.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Edit surface");
@@ -223,7 +223,7 @@ public class MainApp extends Application {
 	public boolean showPaintEditDialog(Paint paint) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/PaintEdit.fxml"));
+			loader.setLocation(MainApp.class.getResource("/PaintEdit.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Edit paint");
