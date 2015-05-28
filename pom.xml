@@ -105,11 +105,7 @@
 			</plugin>
 
 
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>2.7</version>
-			</plugin>
+			
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -139,6 +135,12 @@
 	</build>
 	<reporting>
 		<plugins>
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>

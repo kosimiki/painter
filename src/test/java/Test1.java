@@ -25,7 +25,6 @@ public class Test1 {
 	@Before
 	public void setUp() throws Exception {
 		mainApp = new MainApp();
-		System.out.println(getClass().getResource("/data.xml").toURI());
 		mainApp.setFile(new File( getClass().getResource("/data.xml").toURI()));
 	}
 
